@@ -6,4 +6,4 @@ prestacao = valorcasa / (anos*12)
 if prestacao > (salario*0.3):
     print('Você não pode financiar esta casa pois a prestação excede 30% do seu salário! :/')
 else:
-    print('A prestação mensal a ser paga será de R${}!'.format(prestacao))
+    print('A prestação mensal a ser paga será de R${:.2f}!'.format(prestacao))
