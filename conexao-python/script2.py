@@ -1,13 +1,28 @@
-import psycopg
+import psycopg as conector
 
-conn = psycopg.connect(
-    database="meubanco",
-    user="postgres",
-    password="senha123",
-    host="localhost",
-    port="5432"
-)
+conexao = conector.connect(dbname="meubanco", user="postgres", password="1705", host="localhost", port="5432")
+cursor = conexao.cursor()
 
-print("Conexao bem-sucedida!")
+comando1 = '''DROP TABLE Veiculo;'''
 
-conn.close()
+cursor.execute(comando1)
+
+comando2 = '''CREATE TABLE Veiculo (
+               placa CHARACTER(7) NOT NULL,
+                ano INTEGER NOT NULL,
+               cor TEXT NOT NULL,
+                motor REAL NOT NULL,
+               proprietario INTEGER NOT NULL,
+                marca INTEGER NOT NULL,
+               PRIMARY KEY (placa),
+                FOREIGN KEY(proprietario) REFERENCES Pessoa(cpf),
+               FOREIGN KEY(marca) REFERENCES Marca(id)
+                );'''
+ 
+cursor.execute(comando2)
+ 
+# Efetivação do comando
+conexao.commit()
+
+cursor.close()
+conexao.close()
