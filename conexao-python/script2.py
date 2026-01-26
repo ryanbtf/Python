@@ -1,6 +1,6 @@
-import psycopg2
+import psycopg
 
-conn = psycopg2.connect(
+conn = psycopg.connect(
     database="meubanco",
     user="postgres",
     password="senha123",
@@ -8,6 +8,6 @@ conn = psycopg2.connect(
     port="5432"
 )
 
-print("Conexão bem-sucedida!")
+print("Conexao bem-sucedida!")
 
 conn.close()
