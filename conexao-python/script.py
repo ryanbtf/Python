@@ -1,21 +1,18 @@
-import psycopg2 as conector
-
-# Abertura de conexão e aquisição de cursor
-conexao = conector.connect(host='localhost', database='novadb', port='5432', user='postgres', password='1705')
+import sqlite3 as conector
+ 
+  # Abertura de conexão e aquisição de cursor
+conexao = conector.connect("./meu_banco.db")
 cursor = conexao.cursor()
-
-# Execução de um comando: SELECT... CREATE ...
-comando = '''CREATE TABLE Pessoa (
-                     cpf INTEGER NOT NULL,
-                     nome TEXT NOT NULL,
-                     nascimento DATE NOT NULL,
-                     oculos BOOLEAN NOT NULL,
-                     PRIMARY KEY (cpf)
-                     );'''
  
+  # Execução de um comando: SELECT... CREATE ...
+comando = '''INSERT INTO Pessoa (cpf, nome, nascimento, oculos)
+       VALUES (20000000099, 'José', '1990-02-28', 0);'''
+  
 cursor.execute(comando)
- 
-     # Efetivação do comando
+  
+   # Efetivação do comando
 conexao.commit()
+  
+   # Fechamento das conexões
 cursor.close()
 conexao.close()
